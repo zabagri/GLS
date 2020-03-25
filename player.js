@@ -1,3 +1,5 @@
+/************* Step 1 ************/
+
 function getAsync(theUrl, callback)
 {
     var xmlHttp = new XMLHttpRequest();
@@ -18,6 +20,10 @@ getAsync("https://cors-anywhere.herokuapp.com/https://guidedlearning.oracle.com/
     GLSData = JSON.parse(GLSData).data;
 });
 
+/************* End Step 1 ************/
+
+/************* Step 2 ************/
+
 var style = document.createElement('style');
 style.type = 'text/css';
 style.innerHTML = GLSData.css;
@@ -29,7 +35,10 @@ for(var i = 0; i< steps.length - 2; i++) {
     var sttip = document.createElement("div");
     sttip.classList.add("sttip");
     var tiplate = tiplates[steps[i].action.type];
-    tiplate = [tiplate.slice(0, tiplate.lastIndexOf("Step ")), steps[i].action.stepOrdinal, tiplate.slice(tiplate.lastIndexOf("Step "))].join('');
+    var position = tiplate.indexOf("Step ") + String("Step ").length;
+    tiplate = [tiplate.slice(0, position), steps[i].action.stepOrdinal, tiplate.slice(position)].join('');
+    position = tiplate.indexOf("</span>/") + String("</span>/").length;
+    tiplate = [tiplate.slice(0, position), steps.length, tiplate.slice(position)].join('');
     var content = steps[i].action.contents["#content"];
     var contentClasses = steps[i].action.classes.split(" ");
     var tooltip = document.createElement('div');
@@ -39,7 +48,7 @@ for(var i = 0; i< steps.length - 2; i++) {
     var contentDiv = document.createElement('div');
     contentDiv.innerHTML = content;
     tooltip.getElementsByClassName("popover-content")[0].children[0].appendChild(contentDiv);
-        for(var j = 0; j < contentClasses; j++) {
+        for(var j = 0; j < contentClasses.length; j++) {
             tooltip.classList.add(contentClasses[i]);
         }
     sttip.appendChild(tooltip);
@@ -49,6 +58,6 @@ for(var i = 0; i< steps.length - 2; i++) {
     }
     else
         document.querySelector(steps[i].action.selector).parentElement.appendChild(sttip);
-    
-
 }
+
+/************* End Step 2 ************/
