@@ -12,8 +12,8 @@ Setup instructions:
 4. Enter the console tab on DevTools.
 5. Copy the first step section (Step 1) from the player.js file and paste in DevTools console and press enter.
 6. Write on DevTools GLSData and press enter:
-    6.1: If it's undefined, return to step 6.
-    6.2: If it's a defined object, continue.
+    <br>6.1: If it's undefined, return to step 6.
+    <br>6.2: If it's a defined object, continue.
 7. Copy the second step section (Step 2) from the player.js file and paste in DevTools console and press enter.
 
 Well that's it!
